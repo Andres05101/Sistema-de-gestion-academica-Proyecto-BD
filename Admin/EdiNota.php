@@ -1,7 +1,7 @@
 <?php 
-    include("config/bd.php"); 
     session_start();
-
+    include("config/bd.php"); 
+    
     $curso=$_SESSION['Cod_Cursos'];
     $año=$_SESSION['Año'];
     $Periodo=$_SESSION['Periodo'];
@@ -55,8 +55,8 @@
             <div>            
             </div>
         </div>
-        <div class="row">
-            <div ><br><br>
+        <div class="row">  
+            <div><br><br>
                 <div class="card border-dark mb-3">
                     <div class="card-header p-3 mb-2 bg-dark text-white">
                         Agregar Nota
@@ -107,7 +107,7 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
+            </div>     
             <div class="cod-md-">
             <a href="Tabla_final.php"><button class="btn btn-dark">Reporte de notas</button></a>
         </div>

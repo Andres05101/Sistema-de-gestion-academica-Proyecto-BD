@@ -21,8 +21,8 @@ include ("template/Cabecera.php");
                 <div>
                     <a>Descripción: </a>
                 </div>
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
@@ -46,7 +46,7 @@ include ("template/Cabecera.php");
                                         <!--<input type="hidden" name="Nombreestudiante" value="<?php echo $fila['nomb_est']; ?>">-->
                                         <input type="hidden" name="Codigoestudiante" value="<?php echo $fila['cod_est']; ?>">
                                         <input type="number" class="form-control" name="Nota" placeholder="<?php echo $fila['valor_nota']; ?>" Value="<?php echo $fila['valor_nota']; ?> " onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode==46)" step=".1"min="0" max="5"required autocomplete="off">
-                                        <button type="submit" value="<?php echo $fila['cod_cal'];?>" name="codigocalificacion" class="btn btn-primary">Insertar</button>
+                                        <button type="submit" value="<?php echo $fila['cod_cal'];?>" name="codigocalificacion" class="btn btn-dark">Insertar</button>
                                     </form>
                                 </td>
                             </tr>

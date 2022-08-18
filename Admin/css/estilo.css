@@ -44,7 +44,6 @@ body
 
 /*tabla que muestra los estudiantes en un curso*/
 #EstudiantesCursos{
-    
 }
 #cerrar{
     position: absolute;
@@ -70,4 +69,15 @@ body
     position: absolute;
     left: 6%;
     top: 1%;
+}
+
+#cancelar2{
+    position: absolute;
+    left: 25%;
+    top: 80%;
+}
+#cancelar{
+    position: absolute;
+    left: 23%;
+    top: 71%;
 }

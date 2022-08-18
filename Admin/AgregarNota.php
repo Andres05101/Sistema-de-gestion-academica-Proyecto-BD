@@ -1,5 +1,6 @@
 <?php
 include ("config/bd.php");
+
 session_start();
 $nomb_n = $_POST['Nomb_nota'];
 $Porcen_n = $_POST['Porcentaje'];
@@ -14,7 +15,6 @@ $totalpocen= $Porcen_n;
 while($row = pg_fetch_array($resporcento)){
     $totalpocen = $totalpocen + $row['porcentaje'];
 }
-
 if($totalpocen<=100){    
     $insert_nota = "INSERT INTO notas VALUES ('$codigonota','$Porcen_n','$nomb_n','$año','$periodo','$codcur')";
     $insertnota= pg_query($insert_nota);
@@ -25,9 +25,8 @@ if($totalpocen<=100){
         ?> No se realizo el procedimiento <?php
     }
 } else {
-    ?>no se puede ingresar la nota ya que supera el 100%<?php
+    include("EdiNota.php");
+    
 }
-
-
 
 ?>

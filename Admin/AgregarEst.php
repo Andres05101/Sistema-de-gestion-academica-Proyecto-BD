@@ -31,10 +31,10 @@ include("template/Cabecera.php");
                                     </select>
                             </div>
                             <br><button type="submit" value="Registrar" class="btn btn-dark">Registrar</button>
-                            <a href="Edinota.php" class="btn btn-dark">cancelar</a>
                         </form>
-                    </div>
+                    </div>  
                 </div>
+                <a href="Edinota.php"><button id="cancelar" class="btn btn-dark">Cancelar</button></a>
             </div>
         </div>
     </div>

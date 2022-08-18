@@ -15,6 +15,7 @@
     if($rescon !=0){
         pg_query("insert into calificaciones (cod_cur, cod_est, year, periodo, cod_nota) select '$cod_cur','$cod_est','$año','$peri', cod_nota from notas where year='$año' and periodo='$peri' and cod_cur='$cod_cur'");
     }
+    
 
     if($insert){
         header('location:EdiNota.php');

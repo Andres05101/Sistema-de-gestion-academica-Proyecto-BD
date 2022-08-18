@@ -1,7 +1,5 @@
 <?php
     include("config/bd.php"); 
-    session_start();
-
     
     $ValorNotaEnvi = $_POST['Nota'];
     $codigoEst = $_POST['Codigoestudiante'];
@@ -18,9 +16,11 @@
         if($ResInsertNota){
             header('location:InscribirNota.php');
         }  else {
-        ?> no se puede hacer nada <?php
+        include("EdiNota.php");
+        
         }
     }
 
 
 ?>
+
