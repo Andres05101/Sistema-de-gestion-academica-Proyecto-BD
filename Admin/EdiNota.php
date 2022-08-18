@@ -12,9 +12,6 @@
 <body>
     <div>
         <a href="Cursos.php"><button class="btn btn-dark">Volver a Cursos</button></a>
-        <a href="Tabla_final.php"><button class="btn btn-dark">Tabla de las notas</button></a>
-        
-        <a href="Cursos.php"><button class="btn btn-dark">Volver a Cursos</button></a>
     </div></br>
     <!-- Codigo 1: estudiantes en el curso + agregar estudiante-->
     <div class="container">
@@ -102,7 +99,7 @@
                             <td>
                                 <a href="EditarNota.php?id=<?php echo $fila['cod_nota']; ?>"> <button class="btn btn-dark">Editar Nota</button></a>
                                 <a href="BorrarNota.php?id=<?php echo $fila['cod_nota']; ?>"> <button class="btn btn-dark">Borrar Nota</button></a>
-                                <a href="InscribirNota.php?id=<?php echo $fila['cod_nota']; ?>"><button class="btn btn-dark">Registrar Nota</button></a>
+                                <a href="validarcodigonota.php?id=<?php echo $fila['cod_nota']; ?>"><button class="btn btn-dark">Registrar Nota</button></a>
                             </td>
                         </tr>
                         <?php
@@ -111,8 +108,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="cod-md-"
-
+            <div class="cod-md-">
+            <a href="Tabla_final.php"><button class="btn btn-dark">Reporte de notas</button></a>
         </div>
     </div>       
     </div>
