@@ -34,7 +34,7 @@ include("template/Cabecera.php");
                         </form>
                     </div>  
                 </div>
-                <a href="Edinota.php"><button id="cancelar" class="btn btn-dark">Cancelar</button></a>
+                <a href="EdiNota.php"><button id="cancelar" class="btn btn-dark">Cancelar</button></a>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="Edinota.php"><button id ="cancelar2" class="btn btn-dark">Cancelar</button></a>
+                <a href="EdiNota.php"><button id ="cancelar2" class="btn btn-dark">Cancelar</button></a>
             </div>
         </div>
     </div>

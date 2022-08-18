@@ -11,7 +11,7 @@ include ("template/Cabecera.php");
 ?>
 
 <body>
-    <a href="Edinota.php" class="btn btn-dark">Terminar</a>
+    <a href="EdiNota.php" class="btn btn-dark">Terminar</a>
     <div class="container">
         <div class="row">
             <div class="col-md-2"></div>

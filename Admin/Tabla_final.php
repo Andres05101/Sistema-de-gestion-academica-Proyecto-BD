@@ -79,7 +79,7 @@
                 ?>
             </tbody>
         </table>
-        <a href="Edinota.php"><button id="cancelar" class="btn btn-dark">Volver a Lista de estudiantes</button></a>
+        <a href="EdiNota.php"><button id="cancelar" class="btn btn-dark">Volver a Lista de estudiantes</button></a>
         <?php
     include("template/Cabecera.php");
     ?>
