@@ -6,14 +6,28 @@ $Porcen_n = $_POST['Porcentaje'];
 $codigonota = rand(0,99);
 $codcur = $_SESSION['Cod_Cursos'];
 $año = $_SESSION['Año'];
+$periodo = $_SESSION['Periodo'];
 
-$insert_nota = "INSERT INTO `notas` (`cod_nota`, `nomb_nota`, `porcentaje`, `Cod_cur`,`year`) VALUES ('$codigonota', '$nomb_n', '$Porcen_n', '$codcur', '$año')";
-$insertnota= mysqli_query($conexion,$insert_nota);
-
-if($insertnota){
-    header('location:EdiNota.php');
-} else {
-    ?> No se realizo el procedimiento <?php
+$porcentotal="SELECT porcentaje from notas where cod_cur='$codcur' and year='$año' and periodo='$periodo'";
+$resporcento=pg_query($porcentotal);
+$totalpocen= $Porcen_n;
+while($row = pg_fetch_array($resporcento)){
+    $totalpocen = $totalpocen + $row['porcentaje'];
 }
+
+if($totalpocen<=100){    
+    $insert_nota = "INSERT INTO notas VALUES ('$codigonota','$Porcen_n','$nomb_n','$año','$periodo','$codcur')";
+    $insertnota= pg_query($insert_nota);
+    
+    if($insertnota){
+        header('location:EdiNota.php');
+    } else {
+        ?> No se realizo el procedimiento <?php
+    }
+} else {
+    ?>no se puede ingresar la nota ya que supera el 100%<?php
+}
+
+
 
 ?>

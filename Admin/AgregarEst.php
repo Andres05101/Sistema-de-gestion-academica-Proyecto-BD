@@ -1,6 +1,7 @@
 <?php
 include ("config/bd.php");
 session_start();
+$codcur = $_SESSION['Cod_Cursos'];
 include("template/Cabecera.php");
 ?>
 <div class="container">
@@ -9,8 +10,8 @@ include("template/Cabecera.php");
 
             </div>
                 <div class="col-md-6"><br><br>
-                    <div class="card">
-                        <div class="card-header">
+                    <div class="card border-dark mb-3">
+                        <div class="card-header p-3 mb-2 bg-dark text-white">
                             Agregar Estudiante
                         </div>
                         
@@ -18,11 +19,19 @@ include("template/Cabecera.php");
                 
                         <form method="POST" action="Agregar1.php">
                             <div class = "form-gruop">
-                                <label>Codigo del estudiante a Agregar</label>
-                                <input type="text" class="form-control" name="Cod_est"> 
+                                <select name="agregarestudiante" id="agregarestudiante">
+                                    <option>--Selecione el estudiante--</option>
+                                        <?php
+                                            $consulCur="SELECT cod_est, nomb_est FROM estudiantes where cod_est not in (select cod_est from inscripciones where cod_cur='$codcur') ";
+                                            $consulRes=pg_query($consulCur);
+                                            while($valores = pg_fetch_array($consulRes)){
+                                                echo '<option value="'.$valores['cod_est'].'">'.$valores['cod_est'].'   '.$valores['nomb_est'].'</option>';
+                                            }
+                                        ?>
+                                    </select>
                             </div>
-
-                            <button type="submit" value="Registrar" class="btn btn-primary">Registrar</button>
+                            <br><button type="submit" value="Registrar" class="btn btn-dark">Registrar</button>
+                            <a href="Edinota.php" class="btn btn-dark">cancelar</a>
                         </form>
                     </div>
                 </div>

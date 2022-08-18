@@ -1,3 +1,4 @@
+<script src="main.js"></script>
 <?php
 include_once("config/bd.php");
 session_start();
@@ -16,10 +17,9 @@ if($filas>0){
     header("location:Cursos.php");
 }
 else {
+      
 include("index.php");
-?>
- <div id="diverror">
-    <h1 class="bad" id="error">Usuario o Contraseña incorrecta</h1>
-</div>
-<?php
+echo '<script>Incorrecto()</script>';
+
 }
+?>

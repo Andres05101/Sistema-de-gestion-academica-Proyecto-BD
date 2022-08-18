@@ -1,10 +1,15 @@
 <?php
-include("config/bd.php"); 
+session_start();
+if(isset($_SESSION['Nombre'])){
+    header('location:Cursos.php');
+}
+
 include("template/Cabecera.php");
+
 ?>
 <body>
     <div id="Cabecera">
-
+    <div id="logo1"><img src="css/logo.png" id="loguito"></div>
     </div>
     <div class="container">
         <div class="row">
@@ -12,8 +17,8 @@ include("template/Cabecera.php");
 
             </div>
                 <div class="col-md-4"><br><br>
-                    <div class="card">
-                        <div class="card-header">
+                    <div class="card border-dark mb-3">
+                        <div class="card-header p-3 mb-2 bg-dark text-white">
                             Inicio de sesion
                         </div>
                         
@@ -26,11 +31,14 @@ include("template/Cabecera.php");
                             </div>
 
                             <div class="form-group">
+                                <br>
                                 <label>Contraseña:</label>
                                 <input type="password" class="form-control" name="Contraseña" placeholder="Contraseña">
+                                <br><br>
                             </div>
-
-                            <button type="submit" value="Entrar" class="btn btn-primary">Entrar</button>
+                                
+                            <button id=entrar type="submit" value="Entrar" class="btn btn-dark">Entrar</button>
+                        
                         </form>
                     </div>
                 </div>
@@ -38,3 +46,4 @@ include("template/Cabecera.php");
         </div>
     </div>
 <?php include("template/Pie.php");?>
+<script src="./nodos/sweetalert/dist/sweetalert2.all.min.js"></script>

@@ -2,30 +2,66 @@
     include("config/bd.php"); 
     session_start();
 
-    $accion=$_SESSION['Accion'];
     $curso=$_SESSION['Cod_Cursos'];
     $año=$_SESSION['Año'];
     $Periodo=$_SESSION['Periodo'];
-
     $Cod_docente= $_SESSION['Codigo'];
 
-    include("template/Cabecera.php");
-
-    if ($accion=='Editar_notas'){
-        
+    include("template/Cabecera.php");      
 ?>
 <body>
-    <a href="Cursos.php"><button class="btn btn-primary">Volver a Cursos</button></a>
-    <a href="Tabla_final.php"><button class="btn btn-primary">Tabla de las notas</button></a>
-    <!-- codigo 1 -->
+    <div>
+        <a href="Cursos.php"><button class="btn btn-dark">Volver a Cursos</button></a>
+        <a href="Tabla_final.php"><button class="btn btn-dark">Tabla de las notas</button></a>
+        
+        <a href="Cursos.php"><button class="btn btn-dark">Volver a Cursos</button></a>
+    </div></br>
+    <!-- Codigo 1: estudiantes en el curso + agregar estudiante-->
+    <div class="container">
+        <a href="AgregarEst.php"  class="btn btn-dark"><button class="btn btn-dark">Agregar Estudiante</button></a>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table" class="table table-bordered" name="EstudiantesCursos">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            $consulEst="SELECT i.cod_est, e.nomb_est, e.ape_est from inscripciones i, estudiantes e where i.cod_est=e.cod_est and cod_cur='$curso' and year='$año' and periodo='$Periodo'";
+                            $consulEstu=pg_query($consulEst);
+                            while($fila=pg_fetch_array($consulEstu)){
+                        ?>
+                        <tr>
+                            <td><?php echo $fila['cod_est']; ?></td>
+                            <td><?php echo $fila['nomb_est']; ?></td>
+                            <td><?php echo $fila['ape_est']; ?></td>
+                            <td>
+                                <a href="EliminarEst.php?id=<?php echo $fila['cod_est'];?>"><button class="btn btn-dark">Eliminar</button></a>
+                            </td>
+                        </tr>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--Codigo 2:notas de los estudiantes -->
     <div class="container"> 
         <div class="row">
-            <div></div>
+            <div>            
+            </div>
         </div>
         <div class="row">
             <div ><br><br>
-                <div class="card">
-                    <div class="card-header">
+                <div class="card border-dark mb-3">
+                    <div class="card-header p-3 mb-2 bg-dark text-white">
                         Agregar Nota
                     </div>
                     <div class="card-body">
@@ -39,15 +75,15 @@
                                 <input type="text" class="form-control" name="Porcentaje"> 
                             </div>
                             <div>
-                                <br><button type="submit" name="AgregarN" value="Agregar Nota" class="btn btn-primary">Agregar Nota</button>
+                                <br><button type="submit" name="AgregarN" value="Agregar Nota" class="btn btn-dark">Agregar Nota</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <table class="table table-bordered">
-                    <thead>
+            </div></br></br>
+            <div class="col-md-7">
+                <table class="table">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Descripcion</th>
                             <th>Porcentaje</th>
@@ -57,16 +93,16 @@
                     <tbody>
                         <?php 
                             $consulNota="SELECT Cod_nota, Nomb_nota, Porcentaje from notas where Cod_cur= '$curso'";
-                            $consulNot=mysqli_query($conexion,$consulNota);
-                            while($fila=mysqli_fetch_array($consulNot)){
+                            $consulNot=pg_query($consulNota);
+                            while($fila=pg_fetch_array($consulNot)){
                         ?>
                         <tr>
-                            <td><?php echo $fila['Nomb_nota']; ?></td>
-                            <td><?php echo $fila['Porcentaje']; ?></td>
+                            <td><?php echo $fila['nomb_nota']; ?></td>
+                            <td><?php echo $fila['porcentaje']; ?></td>
                             <td>
-                                <a href="EditarNota.php?id=<?php echo $fila['Cod_nota']; ?>"> <button class="btn btn-primary">Editar Nota</button></a>
-                                <a href="BorrarNota.php?id=<?php echo $fila['Cod_nota']; ?>"> <button class="btn btn-primary">Borrar Nota</button></a>
-                                <a href="InscribirNota.php?id=<?php echo $fila['Cod_nota']; ?>"><button class="btn btn-primary">Registrar Nota</button></a>
+                                <a href="EditarNota.php?id=<?php echo $fila['cod_nota']; ?>"> <button class="btn btn-dark">Editar Nota</button></a>
+                                <a href="BorrarNota.php?id=<?php echo $fila['cod_nota']; ?>"> <button class="btn btn-dark">Borrar Nota</button></a>
+                                <a href="InscribirNota.php?id=<?php echo $fila['cod_nota']; ?>"><button class="btn btn-dark">Registrar Nota</button></a>
                             </td>
                         </tr>
                         <?php
@@ -75,55 +111,14 @@
                     </tbody>
                 </table>
             </div>
+            <div class="cod-md-"
+
         </div>
     </div>       
     </div>
 
-    <?php
-    }
-    
-    else if($accion == 'Editar_estudiantes'){
-    ?>
-    
-    <a href="AgregarEst.php"  class="btn btn-primary"><button class="btn btn-primary">Agregar Estudiante</button></a>
-    <a href="Cursos.php"><button class="btn btn-primary">Volver a Cursos</button></a>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                            $consulEst="SELECT e.Cod_est, e.Nomb_est, e.Ape_est from estudiantes e where Cod_est in ( select Cod_est from inscripciones where Cod_cur='$curso')";
-                            $consulEstu=mysqli_query($conexion,$consulEst);
-                            while($fila=mysqli_fetch_array($consulEstu)){
-                        ?>
-                            <tr>
-                                <td><?php echo $fila['Cod_est']; ?></td>
-                                <td><?php echo $fila['Nomb_est']; ?></td>
-                                <td><?php echo $fila['Ape_est']; ?></td>
-                                <td>
-                                    <a href="EliminarEst.php?id=<?php echo $fila['Cod_est'];?>"><button class="btn btn-primary">Eliminar</button></a>
-                                </td>
-                            </tr>
-                        <?php
-                            }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    
+
     <?php
-    }
-    include("template/Pie.php");
+include("template/Pie.php");
 ?>
